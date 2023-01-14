@@ -145,7 +145,7 @@ class ConnectionDock(QDockWidget):
         
         self.timer=QLineEdit()
         self.timer.setValidator(QIntValidator())
-        self.timer.setText("60")
+        self.timer.setText("24")
         
         self.eSSL=QCheckBox()
         
@@ -168,14 +168,14 @@ class ConnectionDock(QDockWidget):
         formLayot.addRow("Host",self.eHostInput )
         formLayot.addRow("Port",self.ePort )
         formLayot.addRow("Client ID", self.eClientID)
-        formLayot.addRow("User Name",self.eUserName )
-        formLayot.addRow("Password",self.ePassword )
-        formLayot.addRow("timer",self.timer )
-        formLayot.addRow("SSL",self.eSSL )
-        formLayot.addRow("Clean Session",self.eCleanSession )
-        formLayot.addRow("Turn On/Off",self.eConnectbtn)
+        #formLayot.addRow("User Name",self.eUserName )
+        #formLayot.addRow("Password",self.ePassword )
+        formLayot.addRow("temp",self.timer )
+        #formLayot.addRow("SSL",self.eSSL )
+        #formLayot.addRow("Clean Session",self.eCleanSession )
+        formLayot.addRow("connect",self.eConnectbtn)
         formLayot.addRow("Sub topic",self.eSubscribeTopic)
-        formLayot.addRow("Status",self.ePushtbtn)
+        formLayot.addRow("on/off",self.ePushtbtn)
 
         widget = QWidget(self)
         widget.setLayout(formLayot)
@@ -198,6 +198,7 @@ class ConnectionDock(QDockWidget):
     
     def update_btn_state(self,text):
         print("update_btn_state")
+        self.timer.setText(text)
         global ON
         if "OFF" in text:
             self.ePushtbtn.setStyleSheet("background-color: black")

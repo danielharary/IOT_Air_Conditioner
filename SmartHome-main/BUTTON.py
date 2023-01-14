@@ -174,6 +174,8 @@ class ConnectionDock(QDockWidget):
 
         self.ePublisherTopic=QLineEdit()
         self.ePublisherTopic.setText(button_topic)
+        self.etemperatora=QLineEdit()
+        self.etemperatora.setText("18")
 
         formLayot=QFormLayout()
         # formLayot.addRow("Host",self.eHostInput )
@@ -187,6 +189,9 @@ class ConnectionDock(QDockWidget):
         formLayot.addRow("Turn On/Off",self.eConnectbtn)
         formLayot.addRow("Pub topic",self.ePublisherTopic)
         formLayot.addRow("Button",self.ePushtbtn)
+        formLayot.addRow("temperatora",self.etemperatora)
+        
+
 
         widget = QWidget(self)
         widget.setLayout(formLayot)
@@ -207,7 +212,7 @@ class ConnectionDock(QDockWidget):
         self.mc.start_listening()
 
     def push_button_click(self):
-        self.mc.publish_to(self.ePublisherTopic.text(), '"value":1')
+        self.mc.publish_to(self.ePublisherTopic.text(), self.etemperatora.text())
         
 class MainWindow(QMainWindow):
     
@@ -222,7 +227,7 @@ class MainWindow(QMainWindow):
 
         # set up main window
         self.setGeometry(30, 100, 300, 150)
-        self.setWindowTitle('BUTTON')        
+        self.setWindowTitle('remote')        
 
         # Init QDockWidget objects        
         self.connectionDock = ConnectionDock(self.mc)        
